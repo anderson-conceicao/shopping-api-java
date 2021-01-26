@@ -10,7 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
@@ -26,7 +26,7 @@ public class LojaResource {
 	Gson gson = new Gson();
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json;charset=utf-8")
 	public Response getAllLoja() {
 		List<Loja> listaLoja = lojaService.getAllLoja();	
 		
@@ -34,8 +34,8 @@ public class LojaResource {
 	}
 
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes("application/json;charset=utf-8")
+	@Produces("application/json;charset=utf-8")
 	@Path("/cadastrar")
 	public String saveLoja(Loja loja) {
 		System.out.println("ssssssssssssss"+loja.toString());
@@ -43,8 +43,8 @@ public class LojaResource {
 	}
 
 	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes("application/json;charset=utf-8")
+	@Produces("application/json;charset=utf-8")
 	@Path("/alterar/{id}")
 	public String Alterar(@PathParam("id") Long id, Loja loja) {
 		return lojaService.updateLoja(id, loja);
@@ -52,7 +52,7 @@ public class LojaResource {
 	}
 
 	@DELETE
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json;charset=utf-8")
 	@Path("/excluir/{id}")
 	public String Excluir(@PathParam("id") Long id) {
 		return lojaService.deleteLoja(id);

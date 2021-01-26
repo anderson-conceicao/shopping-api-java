@@ -10,7 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
@@ -26,23 +26,23 @@ public class SegmentoResource {
 	Gson gson = new Gson();
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getAllSegmento() {
+	@Produces("application/json;charset=utf-8")
+	public Response getAllSegmento() {
 		List<Segmento> listaSegmento = segmentoService.getAllSegmento();
-		return gson.toJson(listaSegmento);
+		return Response.ok(listaSegmento).build();
 	}
 
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes("application/json;charset=utf-8")
+	@Produces("application/json;charset=utf-8")
 	@Path("/cadastrar")
 	public String saveSegmento(Segmento segmento) {
 		return segmentoService.saveSegmento(segmento);
 	}
 	
 	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes("application/json;charset=utf-8")
+	@Produces("application/json;charset=utf-8")
 	@Path("/alterar/{id}")
 	public String Alterar(@PathParam("id") Long id, Segmento segmento){
 		return segmentoService.updateSegmento(id,segmento);
@@ -51,7 +51,7 @@ public class SegmentoResource {
 
 	
 	@DELETE
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json;charset=utf-8")
 	@Path("/excluir/{id}")	
 	public String Excluir(@PathParam("id") Long id){
 		return segmentoService.deleteSegmento(id);

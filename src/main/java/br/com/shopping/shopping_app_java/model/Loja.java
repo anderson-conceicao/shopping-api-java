@@ -46,7 +46,7 @@ public class Loja implements Serializable {
 
 	@Column(name = "situacao")
 	@NotNull
-	private Integer tipoSituacao;
+	private String tipoSituacao;
 
 	@Override
 	public String toString() {
@@ -58,12 +58,20 @@ public class Loja implements Serializable {
 	@JoinTable(name = "loja_segmento", joinColumns = @JoinColumn(name = "loja_id"), inverseJoinColumns = @JoinColumn(name = "segmento_id"))
 	private List<Segmento> segmentos = new ArrayList<Segmento>();
 
+	public List<Segmento> getSegmentos() {
+		return segmentos;
+	}
+
+	public void setSegmentos(List<Segmento> segmentos) {
+		this.segmentos = segmentos;
+	}
+
 	public Loja() {
 		super();
 	}
 
 	@JsonCreator
-	public Loja(Long id, @JsonProperty(value = "nome")String nome,  @JsonProperty(value = "cnpj")String cnpj, String piso, String numero, Integer tipoSituacao) {
+	public Loja(Long id, @JsonProperty(value = "nome")String nome,  @JsonProperty(value = "cnpj")String cnpj, String piso, String numero, String tipoSituacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -74,11 +82,11 @@ public class Loja implements Serializable {
 
 	}
 
-	public Integer getTipoSituacao() {
+	public String getTipoSituacao() {
 		return tipoSituacao;
 	}
 
-	public void setTipoSituacao(Integer tipoSituacao) {
+	public void setTipoSituacao(String tipoSituacao) {
 		this.tipoSituacao = tipoSituacao;
 	}
 

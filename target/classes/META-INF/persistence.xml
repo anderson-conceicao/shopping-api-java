@@ -12,7 +12,7 @@
 		<!-- Aqui são listadas todas as entidades -->
 		<class>br.com.shopping.shopping_app_java.model.Segmento</class>
 		<class>br.com.shopping.shopping_app_java.model.Loja</class>
-		<class>br.com.shopping.shopping_app_java.model.enums.TipoSituacao</class>
+		
 		
 		<properties>
 			

@@ -54,8 +54,8 @@ public class SegmentoRepository {
 		public List<Segmento> getAllSegmento(){
 		emf =  Persistence.createEntityManagerFactory("shopping");
 		em = emf.createEntityManager();
-		
-		List<Segmento> lista=em.createNativeQuery("select s.id, s.nome from segmento s order by s.nome").getResultList();
+		String sql="select s.id, s.nome from segmento s order by s.nome";
+		List<Segmento> lista=em.createNativeQuery(sql,Segmento.class).getResultList();
 		
 		em.close();
 		emf.close();
