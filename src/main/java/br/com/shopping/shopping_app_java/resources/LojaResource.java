@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
@@ -26,14 +27,10 @@ public class LojaResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getAllLoja() {
-		List<Loja> listaLoja = lojaService.getAllLoja();
-		if (listaLoja != null) {
-			return gson.toJson(listaLoja);
-		} else {
-			return "Dados não encontrados";
-		}
-
+	public Response getAllLoja() {
+		List<Loja> listaLoja = lojaService.getAllLoja();	
+		
+			return Response.ok(listaLoja).build();
 	}
 
 	@POST

@@ -2,22 +2,19 @@ package br.com.shopping.shopping_app_java.model;
 
 import java.io.Serializable;
 
-import java.util.List;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 
 
 
 
-@Entity(name ="segmento")
 
+@Entity
 public class Segmento implements Serializable {
 
 	
@@ -28,19 +25,8 @@ public class Segmento implements Serializable {
 	private Long id;
 	private String nome;
 	
-	@ManyToMany
-	@JoinTable(name="loja_segmento",joinColumns = @JoinColumn(name="loja_id"),
-	inverseJoinColumns = @JoinColumn(name="segmento_id"))
-	private List<Loja>lojas;
-	
-	
-	public List<Loja> getLojas() {
-		return lojas;
-	}
 
-	public void setLojas(List<Loja> lojas) {
-		this.lojas = lojas;
-	}
+		
 
 	public Segmento() {
 		super();

@@ -6,25 +6,37 @@
 
 
 
+	<persistence-unit name="shopping">
+	
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- Aqui são listadas todas as entidades -->
+		<class>br.com.shopping.shopping_app_java.model.Segmento</class>
+		<class>br.com.shopping.shopping_app_java.model.Loja</class>
+		<class>br.com.shopping.shopping_app_java.model.enums.TipoSituacao</class>
+		
+		<properties>
+			
+			<!-- Propriedades JDBC SQL SERVER -->
+			<property name="javax.persistence.jdbc.driver"
+				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:sqlserver://localhost:1434;databaseName=shoppingdb" />
+			<property name="javax.persistence.jdbc.user" value="test" />
+			<property name="javax.persistence.jdbc.password"
+				value="1q2w3e.." />
 
+			<!-- Configurações específicas do Hibernate -->
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.SQLServerDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name ="hibernate.connection.autocommit" value="true" /> 
+		</properties>
+	</persistence-unit>
 	
  
-  <persistence-unit name="shopping" transaction-type="RESOURCE_LOCAL">
-    <class>br.com.shopping.shopping_app_java.model.Segmento</class>
-		<class>br.com.shopping.shopping_app_java.model.Loja</class>
-		
-    <properties>
-      <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-      <property name="javax.persistence.jdbc.url"    value="jdbc:h2:mem:test" />
-      <property name="javax.persistence.jdbc.user" value="sa" />
-      <property name="javax.persistence.jdbc.password" value="" />
-      
-      <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-      <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-      <property name="show_sql" value="true"/>
-      <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
-    </properties>
-  </persistence-unit>
+
 
 	
 	

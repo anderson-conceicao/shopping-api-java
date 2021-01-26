@@ -7,6 +7,7 @@ import br.com.shopping.shopping_app_java.model.Loja;
 import br.com.shopping.shopping_app_java.repositories.LojaRepository;
 import br.com.shopping.shopping_app_java.repositories.SegmentoRepository;
 
+
 public class LojaService {
 
 	LojaRepository lojaRepository = new LojaRepository();
@@ -25,11 +26,11 @@ public class LojaService {
 
 	public String saveLoja(Loja loja) {
 		String sit = "";
-		String seg="";
+		
 		if (loja != null) {
 			
 			sit = lojaRepository.saveLoja(loja);
-			return sit +seg;
+			return sit ;
 		} else {
 			return "Dados inválidos";
 		}

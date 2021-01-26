@@ -1,5 +1,6 @@
 package br.com.shopping.shopping_app_java.repositories;
 
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,7 +20,7 @@ public class LojaRepository {
 	EntityManager em ;
 	
 	public String  saveLoja(Loja loja){
-		
+		System.out.println("================="+loja.toString());
 		emf =  Persistence.createEntityManagerFactory("shopping");
 		em = emf.createEntityManager();
 		
@@ -53,8 +54,9 @@ public class LojaRepository {
 		public List<Loja> getAllLoja(){
 		emf =  Persistence.createEntityManagerFactory("shopping");
 		em = emf.createEntityManager();
-		String sql="select l.id,l.cnpj,l.nome loja,l.numero, l.piso, l.segmento_id,sg.nome segmento,l.situacao_id,st.nome situacao from loja l, situacao st, segmento sg where l.segmento_id=sg.id and l.situacao_id=st.id";
-	List<Loja> lista=em.createNativeQuery(sql).getResultList();
+		String sql="select l.nome, l.cnpj from Loja l ";
+		List<Loja> lista=em.createQuery(sql).getResultList();
+		
 		em.close();
 		emf.close();
 		return lista ;
