@@ -1,17 +1,19 @@
 package br.com.shopping.shopping_app_java.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -19,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
-
+@Table(name="loja")
 public class Loja implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -54,9 +56,9 @@ public class Loja implements Serializable {
 				+ ", tipoSituacao=" + tipoSituacao + ", segmentos=" + segmentos + "]";
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "loja_segmento", joinColumns = @JoinColumn(name = "loja_id"), inverseJoinColumns = @JoinColumn(name = "segmento_id"))
-	private List<Segmento> segmentos = new ArrayList<Segmento>();
+	private List<Segmento> segmentos;
 
 	public List<Segmento> getSegmentos() {
 		return segmentos;

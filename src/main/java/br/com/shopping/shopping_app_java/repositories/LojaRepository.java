@@ -19,10 +19,11 @@ public class LojaRepository {
  
 	EntityManagerFactory emf;
 	EntityManager em ;
+	private String persistenceUnity="shopping";
 	
-	public String  saveLoja(Loja loja){
+	public Loja  saveLoja(Loja loja){
 		
-		emf =  Persistence.createEntityManagerFactory("shopping");
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);
 		em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
@@ -31,15 +32,15 @@ public class LojaRepository {
 		
 		em.close();
 		emf.close();
-		return loja.toString();
+		return loja;
 	}
  
 
 	public String updateLoja(Loja loja){ 
-		emf =  Persistence.createEntityManagerFactory("shopping");
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);
 		em = emf.createEntityManager();
 		
-		em.getTransaction().begin();
+		em.getTransaction().begin();		
 		em.merge(loja);
 		em.getTransaction().commit();
 		
@@ -53,7 +54,7 @@ public class LojaRepository {
 	@SuppressWarnings("unchecked")
 	@Transactional
 		public List<Loja> getAllLoja(){
-		emf =  Persistence.createEntityManagerFactory("shopping");
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);
 		em = emf.createEntityManager();
 //		
 		String sql1="select id , nome,cnpj,numero,piso,CASE WHEN situacao = 1 THEN 'ativa' when situacao=0 then 'inativa' end as situacao from loja;";
@@ -73,7 +74,7 @@ public class LojaRepository {
  
 	@Transactional
 	public Loja getLoja(Long id){
-		emf =  Persistence.createEntityManagerFactory("shopping");
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);
 		em = emf.createEntityManager();
 		
 		Loja loja=em.find(Loja.class, id);
@@ -88,7 +89,7 @@ public class LojaRepository {
 	public String deleteLoja(Long id){
 		
 
-		emf =  Persistence.createEntityManagerFactory("shopping");		
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);		
 		em = emf.createEntityManager();
 		em.getTransaction().begin();	
 		em.remove(em.find(Loja.class, id));

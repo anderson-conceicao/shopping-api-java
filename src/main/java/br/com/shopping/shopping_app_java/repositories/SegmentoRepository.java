@@ -9,19 +9,16 @@ import javax.transaction.Transactional;
 
 import br.com.shopping.shopping_app_java.model.Segmento;
 
-
- 
-
- 
  
 public class SegmentoRepository {
  
 	EntityManagerFactory emf;
 	EntityManager em ;
+	private String persistenceUnity="shopping";
 	
-	public String  saveSegmento(Segmento segmento){
+	public Segmento  saveSegmento(Segmento segmento){
 		
-		emf =  Persistence.createEntityManagerFactory("shopping");
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);
 		em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
@@ -30,12 +27,12 @@ public class SegmentoRepository {
 		
 		em.close();
 		emf.close();
-		return segmento.toString();
+		return segmento;
 	}
  
 
 	public String updateSegmento(Segmento segmento){ 
-		emf =  Persistence.createEntityManagerFactory("shopping");
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);
 		em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
@@ -52,7 +49,7 @@ public class SegmentoRepository {
 	@SuppressWarnings("unchecked")
 	@Transactional
 		public List<Segmento> getAllSegmento(){
-		emf =  Persistence.createEntityManagerFactory("shopping");
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);
 		em = emf.createEntityManager();
 		String sql="select s.id, s.nome from segmento s order by s.nome";
 		List<Segmento> lista=em.createNativeQuery(sql,Segmento.class).getResultList();
@@ -64,7 +61,7 @@ public class SegmentoRepository {
  
 	@Transactional
 	public Segmento getSegmento(Long id){
-		emf =  Persistence.createEntityManagerFactory("shopping");
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);
 		em = emf.createEntityManager();
 		
 		Segmento segmento=em.find(Segmento.class, id);
@@ -78,7 +75,7 @@ public class SegmentoRepository {
 	public void deleteSegmento(Long id){
 
 		
-		emf =  Persistence.createEntityManagerFactory("shopping");		
+		emf =  Persistence.createEntityManagerFactory(persistenceUnity);		
 		em = emf.createEntityManager();
 		em.getTransaction().begin();	
 		em.remove(em.find(Segmento.class, id));

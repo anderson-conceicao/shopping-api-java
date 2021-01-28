@@ -12,7 +12,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
 
 import br.com.shopping.shopping_app_java.model.Segmento;
 import br.com.shopping.shopping_app_java.services.SegmentoService;
@@ -23,7 +22,7 @@ public class SegmentoResource {
 	
 	SegmentoService segmentoService = new SegmentoService();
 
-	Gson gson = new Gson();
+	
 
 	@GET
 	@Produces("application/json;charset=utf-8")
@@ -32,28 +31,39 @@ public class SegmentoResource {
 		return Response.ok(listaSegmento).build();
 	}
 
+	@GET
+	@Produces("application/json;charset=utf-8")
+	@Path("/{id}")
+	public Response getSegmento(@PathParam("id") Long id)  {
+		Segmento obj = segmentoService.getSegmento(id);		
+			return Response.ok(obj).build();
+	}
+	
 	@POST
 	@Consumes("application/json;charset=utf-8")
 	@Produces("application/json;charset=utf-8")
-	@Path("/cadastrar")
-	public String saveSegmento(Segmento segmento) {
-		return segmentoService.saveSegmento(segmento);
+		public Response saveSegmento(Segmento segmento) {
+		Segmento obj=segmentoService.saveSegmento(segmento);
+		return  Response.ok(obj).build();
 	}
 	
 	@PUT
 	@Consumes("application/json;charset=utf-8")
 	@Produces("application/json;charset=utf-8")
-	@Path("/alterar/{id}")
-	public String Alterar(@PathParam("id") Long id, Segmento segmento){
-		return segmentoService.updateSegmento(id,segmento);
+	@Path("/{id}")
+	public Response updateSegmento(@PathParam("id") Long id, Segmento segmento){
+		segmentoService.updateSegmento(id,segmento);
+		return Response.noContent().build();
 		
 	}
 
 	
 	@DELETE
 	@Produces("application/json;charset=utf-8")
-	@Path("/excluir/{id}")	
-	public String Excluir(@PathParam("id") Long id){
-		return segmentoService.deleteSegmento(id);
+	@Path("/{id}")	
+	public Response deleteSegmento(@PathParam("id") Long id){
+		segmentoService.deleteSegmento(id);
+		return Response.noContent().build();
+				
 	}
 }
