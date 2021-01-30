@@ -23,7 +23,7 @@ public class SegmentoService {
 
 	}
 
-	public String updateSegmento(Long id, Segmento newSegmento)   {
+	public String updateSegmento(Long id, Segmento newSegmento) throws Exception   {
 		getSegmento(id);
 		Segmento segmento = segmentoRepository.getSegmento(id);
 		segmento.setNome(newSegmento.getNome());
@@ -31,25 +31,22 @@ public class SegmentoService {
 		return segmentoRepository.updateSegmento(segmento);
 	}
 
-	public void deleteSegmento(Long id) throws DataIntegrityException {
+	public void deleteSegmento(Long id)  {
 
 		getSegmento(id);
 		try {
 			segmentoRepository.deleteSegmento(id);
-		} catch (DataIntegrityException e) {
+		} catch (Exception e) {
 			throw new DataIntegrityException("Não é possivel excluir porque há entidades relacionadas.");
 		}
 
 	}
 
-	public Segmento getSegmento(Long id) throws ObjectNotFoundException {
-		Segmento obj = new Segmento();
+	public Segmento getSegmento(Long id)  {
+		Segmento obj =  segmentoRepository.getSegmento(id);
 
-		try {
-			obj = segmentoRepository.getSegmento(id);
-
-		} catch (ObjectNotFoundException e) {
-			throw new ObjectNotFoundException("Segmento não encontrado!!" + e.getMessage());
+		if (obj == null) {
+			throw new ObjectNotFoundException("Segmento com id " + id + " não encontrada");
 		}
 		return obj;
 	}

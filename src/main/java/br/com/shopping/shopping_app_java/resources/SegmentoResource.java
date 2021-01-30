@@ -34,7 +34,7 @@ public class SegmentoResource {
 	@GET
 	@Produces("application/json;charset=utf-8")
 	@Path("/{id}")
-	public Response getSegmento(@PathParam("id") Long id)  {
+	public Response getSegmento(@PathParam("id") Long id) throws Exception  {
 		Segmento obj = segmentoService.getSegmento(id);		
 			return Response.ok(obj).build();
 	}
@@ -51,7 +51,7 @@ public class SegmentoResource {
 	@Consumes("application/json;charset=utf-8")
 	@Produces("application/json;charset=utf-8")
 	@Path("/{id}")
-	public Response updateSegmento(@PathParam("id") Long id, Segmento segmento){
+	public Response updateSegmento(@PathParam("id") Long id, Segmento segmento) throws Exception{
 		segmentoService.updateSegmento(id,segmento);
 		return Response.noContent().build();
 		

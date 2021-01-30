@@ -34,7 +34,7 @@ public class LojaResource {
 	@GET
 	@Produces("application/json;charset=utf-8")
 	@Path("/{id}")
-	public Response getLoja(@PathParam("id") Long id)  {
+	public Response getLoja(@PathParam("id") Long id){
 		Loja obj = lojaService.getLoja(id);		
 			return Response.ok(obj).build();
 	}
@@ -51,7 +51,7 @@ public class LojaResource {
 	@Consumes("application/json;charset=utf-8")
 	@Produces("application/json;charset=utf-8")
 	@Path("/{id}")
-	public Response updateLoja(@PathParam("id") Long id, Loja loja) {
+	public Response updateLoja(@PathParam("id") Long id, Loja loja)  {
 		lojaService.updateLoja(id, loja);
 		return Response.noContent().build(); 
 

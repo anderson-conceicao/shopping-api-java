@@ -1,15 +1,14 @@
 package br.com.shopping.shopping_app_java.services.exceptions;
 
-public class ObjectNotFoundException extends RuntimeException {
+public class NotFoundException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ObjectNotFoundException(String message) {
+	public NotFoundException(String message) {
 		super(message);
 		
 	}
-
 }
