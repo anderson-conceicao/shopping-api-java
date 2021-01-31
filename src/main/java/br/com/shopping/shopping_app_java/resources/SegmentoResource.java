@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-
+import javax.ws.rs.core.Response.Status;
 
 import br.com.shopping.shopping_app_java.model.Segmento;
 import br.com.shopping.shopping_app_java.services.SegmentoService;
@@ -34,7 +34,7 @@ public class SegmentoResource {
 	@GET
 	@Produces("application/json;charset=utf-8")
 	@Path("/{id}")
-	public Response getSegmento(@PathParam("id") Long id) throws Exception  {
+	public Response getSegmento(@PathParam("id") Long id)  {
 		Segmento obj = segmentoService.getSegmento(id);		
 			return Response.ok(obj).build();
 	}
@@ -44,14 +44,14 @@ public class SegmentoResource {
 	@Produces("application/json;charset=utf-8")
 		public Response saveSegmento(Segmento segmento) {
 		Segmento obj=segmentoService.saveSegmento(segmento);
-		return  Response.ok(obj).build();
+		return  Response.status(Status.CREATED).entity(obj).build();
 	}
 	
 	@PUT
 	@Consumes("application/json;charset=utf-8")
 	@Produces("application/json;charset=utf-8")
 	@Path("/{id}")
-	public Response updateSegmento(@PathParam("id") Long id, Segmento segmento) throws Exception{
+	public Response updateSegmento(@PathParam("id") Long id, Segmento segmento) {
 		segmentoService.updateSegmento(id,segmento);
 		return Response.noContent().build();
 		

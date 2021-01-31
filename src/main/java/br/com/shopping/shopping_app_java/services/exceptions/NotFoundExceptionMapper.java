@@ -1,5 +1,9 @@
 package br.com.shopping.shopping_app_java.services.exceptions;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -13,7 +17,11 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
 
 	@Override
 		public Response toResponse(NotFoundException exception) {	
-		ErrorMessage errorMessage= new ErrorMessage(404, "Recurso Não Encontrado");
+		Calendar c = Calendar.getInstance();
+		DateFormat f = DateFormat.getDateInstance(DateFormat.FULL); //Data COmpleta
+		
+		Date exceptionDate= c.getTime();
+		ErrorMessage errorMessage= new ErrorMessage(404, "Recurso Não Encontrado",f.format(exceptionDate));
 		return Response.status(Status.NOT_FOUND)
 				  .entity(errorMessage)
 				  .build();

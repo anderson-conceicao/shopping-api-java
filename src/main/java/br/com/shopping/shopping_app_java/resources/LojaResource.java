@@ -13,8 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-
-
+import javax.ws.rs.core.Response.Status;
 
 import br.com.shopping.shopping_app_java.model.Loja;
 import br.com.shopping.shopping_app_java.services.LojaService;
@@ -44,7 +43,7 @@ public class LojaResource {
 	@Produces("application/json;charset=utf-8")
 	public Response saveLoja(Loja loja) {
 	Loja obj=lojaService.saveLoja(loja);
-			return  Response.ok(obj).build();
+			return  Response.status(Status.CREATED).entity(obj).build();
 	}
 
 	@PUT

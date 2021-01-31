@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 
 
-@Entity
+@Entity(name="segmento")
 @Table(name="segmento")
 public class Segmento implements Serializable {
 

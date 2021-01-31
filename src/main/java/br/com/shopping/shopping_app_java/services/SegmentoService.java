@@ -23,7 +23,7 @@ public class SegmentoService {
 
 	}
 
-	public String updateSegmento(Long id, Segmento newSegmento) throws Exception   {
+	public String updateSegmento(Long id, Segmento newSegmento)  {
 		getSegmento(id);
 		Segmento segmento = segmentoRepository.getSegmento(id);
 		segmento.setNome(newSegmento.getNome());

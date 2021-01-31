@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-@Entity
+@Entity(name="loja")
 @Table(name="loja")
 public class Loja implements Serializable {
 

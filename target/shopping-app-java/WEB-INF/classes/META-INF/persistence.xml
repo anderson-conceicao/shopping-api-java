@@ -1,3 +1,4 @@
+  
 <persistence
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
@@ -9,14 +10,13 @@
 	<persistence-unit name="shopping">
 	
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<!-- Aqui são listadas todas as entidades -->
 		<class>br.com.shopping.shopping_app_java.model.Segmento</class>
 		<class>br.com.shopping.shopping_app_java.model.Loja</class>
 		
 		
 		<properties>
 			
-			<!-- Propriedades JDBC SQL SERVER -->
+			
 			<property name="javax.persistence.jdbc.driver"
 				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="javax.persistence.jdbc.url"
@@ -25,7 +25,7 @@
 			<property name="javax.persistence.jdbc.password"
 				value="1q2w3e.." />
 
-			<!-- Configurações específicas do Hibernate -->
+	
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.SQLServerDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
@@ -41,3 +41,7 @@
 	
 	
 </persistence>
+
+
+
+
