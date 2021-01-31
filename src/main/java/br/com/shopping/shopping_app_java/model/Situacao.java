@@ -10,52 +10,45 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
-
-
-
-
-@Entity(name="segmento")
-@Table(name="segmento")
-public class Segmento implements Serializable {
-
+@Entity(name="situacao")
+@Table(name="situacao")
+public class Situacao implements Serializable {
 	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	@Column(name = "nome")
 	@NotNull
-	private String nome;
+	private String nome;	
 	
-
-		
-
-	public Segmento() {
+	
+	
+	public Situacao() {
 		super();
 	}
-
-	public Segmento(Long id, String nome) {
+	
+	
+	
+	
+	public Situacao(Long id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		
 	}
-
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -67,7 +60,6 @@ public class Segmento implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -76,7 +68,7 @@ public class Segmento implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Segmento other = (Segmento) obj;
+		Situacao other = (Situacao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -84,11 +76,7 @@ public class Segmento implements Serializable {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Segmento [id=" + id + ", nome=" + nome + "]";
-	}
+	
 	
 
 }

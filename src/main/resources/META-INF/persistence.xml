@@ -12,6 +12,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>br.com.shopping.shopping_app_java.model.Segmento</class>
 		<class>br.com.shopping.shopping_app_java.model.Loja</class>
+		<class>br.com.shopping.shopping_app_java.model.Situacao</class>
 		
 		
 		<properties>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -46,51 +48,32 @@ public class Loja implements Serializable {
 	@NotNull
 	private String numero;
 
-	@Column(name = "situacao")
-	@NotNull
-	private String tipoSituacao;
 
-	@Override
-	public String toString() {
-		return "Loja [id=" + id + ", nome=" + nome + ", cnpj=" + cnpj + ", piso=" + piso + ", numero=" + numero
-				+ ", tipoSituacao=" + tipoSituacao + ", segmentos=" + segmentos + "]";
-	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "loja_segmento", joinColumns = @JoinColumn(name = "loja_id"), inverseJoinColumns = @JoinColumn(name = "segmento_id"))
 	private List<Segmento> segmentos;
+	
+	@OneToOne(cascade = CascadeType.MERGE)
+	private Situacao situacao;
 
-	public List<Segmento> getSegmentos() {
-		return segmentos;
-	}
-
-	public void setSegmentos(List<Segmento> segmentos) {
-		this.segmentos = segmentos;
-	}
 
 	public Loja() {
 		super();
 	}
 
 	@JsonCreator
-	public Loja(Long id, @JsonProperty(value = "nome")String nome,  @JsonProperty(value = "cnpj")String cnpj, String piso, String numero, String tipoSituacao) {
+	public Loja(Long id, @JsonProperty(value = "nome")String nome,  @JsonProperty(value = "cnpj")String cnpj, String piso, String numero, Situacao situacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.piso = piso;
 		this.numero = numero;
-		this.tipoSituacao = tipoSituacao;
+		this.situacao = situacao;
 
 	}
 
-	public String getTipoSituacao() {
-		return tipoSituacao;
-	}
-
-	public void setTipoSituacao(String tipoSituacao) {
-		this.tipoSituacao = tipoSituacao;
-	}
 
 	public Long getId() {
 		return id;
@@ -132,6 +115,22 @@ public class Loja implements Serializable {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	public Situacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
+	}
+
+	public List<Segmento> getSegmentos() {
+		return segmentos;
+	}
+
+	public void setSegmentos(List<Segmento> segmentos) {
+		this.segmentos = segmentos;
 	}
 
 }

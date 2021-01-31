@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import br.com.shopping.shopping_app_java.model.Loja;
+import br.com.shopping.shopping_app_java.model.dtos.LojaDTO;
 import br.com.shopping.shopping_app_java.services.LojaService;
 
 @Path("/lojas")
@@ -26,7 +27,7 @@ public class LojaResource {
 	@GET
 	@Produces("application/json;charset=utf-8")
 	public Response getAllLoja() {
-		List<Loja> listaLoja = lojaService.getAllLoja();		
+		List<LojaDTO> listaLoja = lojaService.getAllLoja();		
 			return Response.ok(listaLoja).build();
 	}
 	

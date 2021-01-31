@@ -3,6 +3,7 @@ package br.com.shopping.shopping_app_java.services;
 import java.util.List;
 
 import br.com.shopping.shopping_app_java.model.Loja;
+import br.com.shopping.shopping_app_java.model.dtos.LojaDTO;
 import br.com.shopping.shopping_app_java.repositories.LojaRepository;
 import br.com.shopping.shopping_app_java.repositories.SegmentoRepository;
 import br.com.shopping.shopping_app_java.services.exceptions.DataIntegrityException;
@@ -13,7 +14,7 @@ public class LojaService {
 	LojaRepository lojaRepository = new LojaRepository();
 	SegmentoRepository segmentoRepository = new SegmentoRepository();
 
-	public List<Loja> getAllLoja() {
+	public List<LojaDTO> getAllLoja() {
 		return lojaRepository.getAllLoja();
 	}
 
@@ -34,7 +35,7 @@ public class LojaService {
 		loja.setPiso(newLoja.getPiso());
 		loja.setNumero(newLoja.getNumero());
 		loja.setSegmentos(newLoja.getSegmentos());
-		loja.setTipoSituacao(newLoja.getTipoSituacao());
+		loja.setSituacao(newLoja.getSituacao());
 		return lojaRepository.updateLoja(loja);
 	}
 
